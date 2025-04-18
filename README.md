@@ -96,6 +96,6 @@ Kontribusi sangat diterima! Jika Anda ingin berkontribusi:
 
 ## Kontak
 
-Nama Anda - [putera.harri@gmail.com](mailto:putera.harri@gmail.com)
+Nama - [putera.harri@gmail.com](mailto:putera.harri@gmail.com)
 
 Link Proyek: [https://github.com/putera99/MyLearningApp](https://github.com/putera99/MyLearningApp)
