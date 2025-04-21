@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.ViewCompat;
 
 public class ThirdActivity extends AppCompatActivity {
 
@@ -41,8 +41,11 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
 
-        // Tombol untuk kembali ke MainActivity (Metode yang lebih aman)
+        // Tombol untuk kembali ke MainActivity
         Button btnHome = findViewById(R.id.btnBackToHome);
+        // Tombol untuk kembali ke ForthActivity
+        Button btnForth = findViewById(R.id.btnToForth);
+
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +55,17 @@ public class ThirdActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish(); // Menutup activity saat ini
+            }
+        });
+
+        btnForth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Membuat Intent baru untuk MainActivity dengan flag khusus
+                Intent intent = new Intent(ThirdActivity.this, ForthActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
         });
     }
