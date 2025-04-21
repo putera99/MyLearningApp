@@ -9,47 +9,45 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 public class SecondActivity extends AppCompatActivity {
+
+    public static final String EXTRA_USER_NAME = "USER_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_second);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.second), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Menerima data dari MainActivity
-        String name = getIntent().getStringExtra("USER_NAME");
+        // Ambil nama pengguna dari intent
+        String userName = getIntent().getStringExtra(EXTRA_USER_NAME);
 
-        // Menampilkan nama pengguna
+        // Tampilkan nama pengguna
         TextView textViewUserName = findViewById(R.id.textViewUserName);
-        textViewUserName.setText("Halo, " + name + "!");
+        textViewUserName.setText("Halo, " + userName + "!");
 
-        // Tombol untuk pindah ke ThirdActivity
-        Button btnToThird = findViewById(R.id.btnToThird);
-        btnToThird.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, ThirdActivity.class);
-                intent.putExtra("USER_NAME", name);
-                startActivity(intent);
-            }
-        });
+        // Set listener tombol
+        setOnClick(R.id.btnToThird, ThirdActivity.class, userName);
+        setOnClick(R.id.btnToCalculator, CalcActivity.class, null);
+        findViewById(R.id.btnBack).setOnClickListener(view -> finish());
+    }
 
-        // Tombol untuk kembali ke MainActivity
-        Button btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+    private void setOnClick(int buttonId, Class<?> targetActivity, String name) {
+        findViewById(buttonId).setOnClickListener(view -> {
+            Intent intent = new Intent(SecondActivity.this, targetActivity);
+            if (name != null) {
+                intent.putExtra(EXTRA_USER_NAME, name);
             }
+            startActivity(intent);
         });
     }
 }
