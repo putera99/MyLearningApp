@@ -30,6 +30,10 @@
             android:name=".ThirdActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ForthActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
