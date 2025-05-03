@@ -39,5 +39,9 @@ public class ForthActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        WebView webView = (WebView) findViewById(R.id.webview);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl("https://uai.ac.id/");
     }
 }
